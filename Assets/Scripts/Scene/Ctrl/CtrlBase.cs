@@ -3,7 +3,6 @@ using DG.Tweening.Core;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public abstract class CtrlBase
 {
@@ -100,20 +99,9 @@ public abstract class CtrlBase
         if (CtrlModel.sceneModel.isPlayCam)
         {
             Transform cam = Camera.main.transform;
-            DOTweenAnimation[] doTweenAnimations = cam.GetComponents<DOTweenAnimation>();
-            for (int i = 0; i < doTweenAnimations.Length; i++)
-            {
-                if (doTweenAnimations[i].animationType == DOTweenAnimationType.LocalMove)
-                {
-                    doTweenAnimations[i].endValueV3 = CtrlModel.sceneModel.GetCamToEndPos();
-                    doTweenAnimations[i].DOPlay();
-                }
-                else if (doTweenAnimations[i].animationType == DOTweenAnimationType.LocalRotate)
-                {
-                    doTweenAnimations[i].endValueV3 = CtrlModel.sceneModel.GetCamToEndEulerAngles();
-                    doTweenAnimations[i].DOPlay();
-                }
-            }
+
+            cam.transform.DOMove(CtrlModel.sceneModel.endCamPos, 1);
+            cam.transform.DORotate(CtrlModel.sceneModel.endCamEulerAngles, 1);
 
             CtrlModel.sceneModel.isPlayCam = false;
         }

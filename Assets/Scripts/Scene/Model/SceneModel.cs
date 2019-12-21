@@ -30,6 +30,12 @@ public class SceneModel
 
     public Vector3 GetCamToEndPos()
     {
-        return new Vector3(endCamEulerAngles.x - startCamPos.x, endCamEulerAngles.y - startCamPos.y, endCamEulerAngles.z - startCamPos.z);
+        return new Vector3(endCamPos.x - startCamPos.x, endCamPos.y - startCamPos.y, endCamPos.z - startCamPos.z);
+    }
+
+
+    public Vector3 GetCamToEndEulerAngles()
+    {
+        return new Vector3(endCamEulerAngles.x - startCamEulerAngles.x, endCamEulerAngles.y - startCamEulerAngles.y, endCamEulerAngles.z - startCamEulerAngles.z);
     }
 }

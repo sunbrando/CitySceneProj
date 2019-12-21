@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using FairyGUI;
+using DG.Tweening;
 
 public class MainView {
 
@@ -56,6 +57,10 @@ public class MainView {
 
     void button5_Click()
     {
-        CtrlModel.SwicthState(SceneState.None);
+        Transform cam = Camera.main.transform;
+
+        cam.transform.DOMove(Main.defaultCamPos, 1);
+        cam.transform.DORotate(Main.defaultCamEulerAngles, 1);
+        Main.Init();
     }
 }

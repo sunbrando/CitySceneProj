@@ -37,8 +37,6 @@ public class CtrlModel
                 return SceneMotoCtrl.GetInstance();
             case SceneState.UIZhaoCha:
                 return SceneMotoCtrl.GetInstance();
-            case SceneState.None:
-                return SceneNoneCtrl.GetInstance();
             default:
                 return null;
         }
@@ -56,8 +54,6 @@ public class CtrlModel
                 return new SceneMotoModel();
             case SceneState.UIZhaoCha:
                 return new SceneMotoModel();
-            case SceneState.None:
-                return new SceneNoneModel();
             default:
                 return null;
         }
