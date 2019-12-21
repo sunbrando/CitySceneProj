@@ -5,12 +5,12 @@ using FairyGUI;
 
 public abstract class SceneView
 {
-    public abstract void InitView(EventCallback0 eventCallback0);
-
     public GamePanel panel;
 
-    TypingEffect typingEffect;
     public EventCallback0 eventCallback0;
+    public abstract void InitView(EventCallback0 eventCallback0);
+
+    TypingEffect typingEffect;
 
     public void PlayTypeEffect(GTextField text)
     {
@@ -34,7 +34,6 @@ public abstract class SceneView
             Timers.inst.Remove(PrintText);
         }
         panel.Dispose();
-
         eventCallback0?.Invoke();
     }
 }

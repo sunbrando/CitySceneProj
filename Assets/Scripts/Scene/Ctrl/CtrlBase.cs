@@ -1,25 +1,15 @@
 ﻿using DG.Tweening;
 using DG.Tweening.Core;
+using FairyGUI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class CtrlBase
 {
-    public void MoveCamer()
-    {
-        if (CtrlModel.sceneModel.isPlayCam)
-        {
-            if (Vector3.Distance(CtrlModel.sceneModel.startCamEulerAngles, CtrlModel.sceneModel.endCamEulerAngles) > 1)
-            {
-                CtrlModel.sceneModel.movePercent += Time.deltaTime / CtrlModel.sceneModel.sumTime;
-                CtrlModel.sceneModel.cam.transform.localPosition = Vector3.Lerp(CtrlModel.sceneModel.startCamPos, CtrlModel.sceneModel.endCamPos, CtrlModel.sceneModel.movePercent);
-                CtrlModel.sceneModel.cam.transform.localEulerAngles = Vector3.Lerp(CtrlModel.sceneModel.startCamEulerAngles, CtrlModel.sceneModel.endCamEulerAngles, CtrlModel.sceneModel.movePercent);
-            }
-            else
-                CtrlModel.sceneModel.isPlayCam = false;
-        }
-    }
+
+    [HideInInspector]
+    public EventCallback0 SceneEndCallback;
 
     public virtual void Play()
     {
@@ -31,14 +21,13 @@ public abstract class CtrlBase
                 CtrlModel.moveOrUI = MoveOrUI.UI;
                 CtrlModel.sceneModel.sceneView.InitView(() =>
                 {
-                    CtrlModel.moveOrUI = MoveOrUI.None;
+                    SceneEnd();
                 });
             }
             else
             {
-                CtrlModel.moveOrUI = MoveOrUI.None;
+                SceneEnd();
             }
-
         }
         else if (CtrlModel.moveOrUI == MoveOrUI.None)
         {
@@ -105,5 +94,11 @@ public abstract class CtrlBase
 
             CtrlModel.sceneModel.isPlayCam = false;
         }
+    }
+
+    void SceneEnd()
+    {
+        CtrlModel.isSceneEnd = true;
+        SceneEndCallback?.Invoke();
     }
 }

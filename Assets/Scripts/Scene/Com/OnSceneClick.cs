@@ -48,6 +48,7 @@ public class OnSceneClick : MonoBehaviour
 
     public void OnClick()
     {
+        CtrlModel.isGodView = false;
         CtrlModel.SwicthState(sceneState);
     }
 

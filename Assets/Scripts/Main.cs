@@ -54,10 +54,9 @@ public class Main : MonoBehaviour
         if (ctrl == null || ctrl.IsStop())
         {
             SwitchState();
-            CtrlModel.sceneModel = CtrlModel.GetSceneModel(CtrlModel.sceneState);
+            CtrlModel.SwicthState(CtrlModel.sceneState);
             CtrlModel.sceneModel.isPlayCam = false;
             CtrlModel.sceneModel.sceneView = null;
-            CtrlModel.moveOrUI = MoveOrUI.None;
         }
 
         Play();
@@ -65,11 +64,19 @@ public class Main : MonoBehaviour
 
     void Play()
     {
-        CtrlBase ctrl = CtrlModel.GetSceneCtrl();
-        if (ctrl != null)
+        if (!CtrlModel.isSceneEnd)
         {
-            ctrl.Play();
+            CtrlBase ctrl = CtrlModel.GetSceneCtrl();
+            if (ctrl != null)
+            {
+                ctrl.Play();
+            }
         }
+        else
+        {
+            CtrlModel.SwicthState(CtrlModel.sceneState);
+        }
+
     }
 
     void SwitchState()

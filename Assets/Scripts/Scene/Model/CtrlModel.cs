@@ -7,6 +7,7 @@ public enum SceneState
     None,
     SceneMotoRun,
     SceneProjTalk,
+    SceneExamination,
     UIWenJuan,
     UIZhaoCha
 };
@@ -23,6 +24,7 @@ public class CtrlModel
     public static SceneState sceneState;
     public static MoveOrUI moveOrUI;
     public static SceneModel sceneModel;
+    public static bool isSceneEnd = true;
     public static bool isGodView = true;
 
     public static CtrlBase GetSceneCtrl()
@@ -33,10 +35,12 @@ public class CtrlModel
                 return SceneMotoCtrl.GetInstance();
             case SceneState.SceneProjTalk:
                 return SceneProjTalkCtrl.GetInstance();
+            case SceneState.SceneExamination:
+                return SceneExaminationCtrl.GetInstance();
             case SceneState.UIWenJuan:
-                return SceneMotoCtrl.GetInstance();
+                return null;
             case SceneState.UIZhaoCha:
-                return SceneMotoCtrl.GetInstance();
+                return null;
             default:
                 return null;
         }
@@ -50,10 +54,12 @@ public class CtrlModel
                 return new SceneMotoModel();
             case SceneState.SceneProjTalk:
                 return new SceneProjTalkModel();
+            case SceneState.SceneExamination:
+                return new SceneExaminationModel();
             case SceneState.UIWenJuan:
-                return new SceneMotoModel();
+                return null;
             case SceneState.UIZhaoCha:
-                return new SceneMotoModel();
+                return null;
             default:
                 return null;
         }
@@ -61,12 +67,9 @@ public class CtrlModel
 
     public static void SwicthState(SceneState sceneState)
     {
-        if (CtrlModel.sceneState != sceneState || CtrlModel.isGodView)
-        {
-            CtrlModel.isGodView = false;
-            CtrlModel.sceneState = sceneState;
-            CtrlModel.sceneModel = CtrlModel.GetSceneModel(sceneState);
-            CtrlModel.moveOrUI = MoveOrUI.None;
-        }
+        CtrlModel.sceneState = sceneState;
+        CtrlModel.sceneModel = CtrlModel.GetSceneModel(sceneState);
+        CtrlModel.moveOrUI = MoveOrUI.None;
+        CtrlModel.isSceneEnd = false;
     }
 }

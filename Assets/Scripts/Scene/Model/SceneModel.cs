@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using FairyGUI;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,6 +21,13 @@ public class SceneModel
     public bool isPlayCam;
     public SceneView sceneView;
 
+    public Dictionary<string, GameObject> gos = new Dictionary<string, GameObject>();
+
+    //goname + 移动的位置索引
+    public Dictionary<string, EventCallback0> posCallbacks = new Dictionary<string, EventCallback0>();
+    //goname + 动作名称
+    public Dictionary<string, EventCallback0> animCallbacks = new Dictionary<string, EventCallback0>();
+
     public SceneModel()
     {
         cam = Camera.main;
@@ -37,5 +45,46 @@ public class SceneModel
     public Vector3 GetCamToEndEulerAngles()
     {
         return new Vector3(endCamEulerAngles.x - startCamEulerAngles.x, endCamEulerAngles.y - startCamEulerAngles.y, endCamEulerAngles.z - startCamEulerAngles.z);
+    }
+
+    public void GetAllGo()
+    {
+        if (goNames != null)
+        {
+            for (int i = 0; i < goNames.Length; i++)
+            {
+                string name = goNames[i];
+                GameObject gameObj = GameObject.Find(parentName + name);
+                gos.Add(name, gameObj);
+            }
+        }
+    }
+
+    public void SetMoveAndAnimCallBack()
+    {
+        for (int i = 0; i < goNames.Length; i++)
+        {
+            string name = goNames[i];
+            GameObject gameObj = gos[name];
+            MoveAndAnim moveAndAnim = gameObj.GetComponent<MoveAndAnim>();
+
+            for (int j = 0; j < moveAndAnim.animNames.Length; j++)
+            {
+                string animName = moveAndAnim.animNames[i];
+                if (animCallbacks.ContainsKey(name + animName))
+                {
+                    moveAndAnim.animCallbacks.Add(animName, animCallbacks[name + animName]);
+                }
+            }
+
+            for (int j = 0; j < moveAndAnim.end.Length; j++)
+            {
+                Debug.Log(name + j.ToString());
+                if (posCallbacks.ContainsKey(name + j.ToString()))
+                {
+                    moveAndAnim.posCallbacks.Add(j, posCallbacks[name + j.ToString()]);
+                }
+            }
+        }
     }
 }
