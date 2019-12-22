@@ -15,11 +15,6 @@ public class SceneExaminationModel : SceneModel
 
         GetAllGo();
 
-
-
-        Transform transform2 = gos["Character_Female_JacketNav"].transform.GetChild(0);
-        transform2.gameObject.SetActive(false);
-
         SetCharacter_Male_JacketCallBack();
         SetCharacter_Female_JacketCallBack();
 
@@ -30,9 +25,15 @@ public class SceneExaminationModel : SceneModel
     {
         string goName = "Character_Male_JacketNav";
         Transform transform = gos[goName].transform;
-        Transform child = transform.GetChild(0);
+        Transform child = transform.Find("Character_Male_Jacket");
+        Transform faceHanTs = transform.Find("faceHan");
+        Transform faceAngerTs = transform.Find("faceAnger");
 
         child.gameObject.SetActive(false);
+        faceHanTs.gameObject.SetActive(false);
+        faceAngerTs.gameObject.SetActive(false);
+
+        faceAngerTs.localPosition = new Vector3(faceHanTs.localPosition.x, faceHanTs.localPosition.y-2, faceHanTs.localPosition.z);
 
         posCallbacks.Add(goName + "0", () =>
         {
@@ -42,15 +43,24 @@ public class SceneExaminationModel : SceneModel
         posCallbacks.Add(goName + "1", () =>
         {
             transform.localEulerAngles = new Vector3(0, -174.87f, 0);
+            faceHanTs.gameObject.SetActive(true);
         });
     }
 
+    void ShowFaceAnger()
+    {
+        string goName = "Character_Male_JacketNav";
+        Transform transform = gos[goName].transform;
+        Transform faceAngerTs = transform.Find("faceAnger");
+
+        faceAngerTs.gameObject.SetActive(true);
+    }
 
     void SetCharacter_Female_JacketCallBack()
     {
         string goName = "Character_Female_JacketNav";
         Transform transform = gos[goName].transform;
-        Transform child = transform.GetChild(0);
+        Transform child = transform.Find("Character_Female_Jacket");
 
         child.gameObject.SetActive(false);
 
@@ -62,6 +72,8 @@ public class SceneExaminationModel : SceneModel
         posCallbacks.Add(goName + "1", () =>
         {
             transform.localEulerAngles = Vector3.zero;
+            Animator animator = child.GetComponent<Animator>();
+            animator.Play("Di");
         });
     }
 }

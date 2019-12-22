@@ -79,7 +79,6 @@ public class SceneModel
 
             for (int j = 0; j < moveAndAnim.end.Length; j++)
             {
-                Debug.Log(name + j.ToString());
                 if (posCallbacks.ContainsKey(name + j.ToString()))
                 {
                     moveAndAnim.posCallbacks.Add(j, posCallbacks[name + j.ToString()]);
