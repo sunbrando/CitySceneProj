@@ -191,4 +191,14 @@ public class MoveAndAnim : MonoBehaviour
             delay = delays[index];
         }
     }
+
+    public void AddPosCallbacks(int posIndex, EventCallback0 eventCallback0)
+    {
+        if (posCallbacks.ContainsKey(posIndex))
+        {
+            posCallbacks.Remove(posIndex);
+        }
+
+        posCallbacks.Add(posIndex, eventCallback0);
+    }
 }

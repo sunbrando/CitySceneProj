@@ -25,13 +25,13 @@ public class MainView {
         //GButton button1 = panel1.com.GetChild("button_1").asButton;
         //GButton button2 = panel1.com.GetChild("button_2").asButton;
         //GButton button3 = panel1.com.GetChild("button_3").asButton;
-        //GButton button4 = panel1.com.GetChild("button_4").asButton;
+        GButton button4 = panel1.com.GetChild("button_4").asButton;
         GButton button5 = panel1.com.GetChild("button_5").asButton;
 
         //button1.onClick.Set(button1_Click);
         //button2.onClick.Set(button2_Click);
         //button3.onClick.Set(button3_Click);
-        //button4.onClick.Set(button4_Click);
+        button4.onClick.Set(button4_Click);
         button5.onClick.Set(button5_Click);
     }
 
@@ -50,17 +50,20 @@ public class MainView {
     //    Debug.Log("button3_Click");
     //}
 
-    //void button4_Click()
-    //{
-    //    Debug.Log("button4_Click");
-    //}
+    void button4_Click()
+    {
+        if (!CtrlModel.isGodView)
+        {
+            Transform cam = Camera.main.transform;
+
+            cam.transform.DOMove(Main.defaultCamPos, 1);
+            cam.transform.DORotate(Main.defaultCamEulerAngles, 1);
+            Main.Init();
+        }
+    }
 
     void button5_Click()
     {
-        Transform cam = Camera.main.transform;
-
-        cam.transform.DOMove(Main.defaultCamPos, 1);
-        cam.transform.DORotate(Main.defaultCamEulerAngles, 1);
-        Main.Init();
+        Application.Quit();
     }
 }

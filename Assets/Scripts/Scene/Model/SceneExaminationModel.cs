@@ -8,8 +8,8 @@ public class SceneExaminationModel : SceneModel
     {
         parentName = "City/SceneExamination/";
         goNames = new string[] { "Character_Male_JacketNav", "Car_6Nav" , "Character_Female_JacketNav" };
-        endCamPos = new Vector3(-98.05746f, 44.32618f, -49.71683f);
-        endCamEulerAngles = new Vector3(22.517f, 51.773f, 0);
+        endCamPos = new Vector3(-86.03757f, 33.16249f, -3.187508f);
+        endCamEulerAngles = new Vector3(26.642f, 52.908f, 0);
 
         //sceneView = SceneProjTalkView.GetInstance();
 
@@ -42,7 +42,7 @@ public class SceneExaminationModel : SceneModel
 
         posCallbacks.Add(goName + "1", () =>
         {
-            transform.localEulerAngles = new Vector3(0, -174.87f, 0);
+            transform.localEulerAngles = new Vector3(0, -157.2f, 0);
             faceHanTs.gameObject.SetActive(true);
         });
     }
@@ -61,8 +61,10 @@ public class SceneExaminationModel : SceneModel
         string goName = "Character_Female_JacketNav";
         Transform transform = gos[goName].transform;
         Transform child = transform.Find("Character_Female_Jacket");
+        Transform money = child.Find("Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 Spine1/Bip001 Spine2/Bip001 Neck/Bip001 R Clavicle/Bip001 R UpperArm/Bip001 R Forearm/Bip001 R Hand/Bip001 R Finger2/Bip001 R Finger21/money");
 
         child.gameObject.SetActive(false);
+        money.gameObject.SetActive(false);
 
         posCallbacks.Add(goName + "0", () =>
         {
@@ -71,9 +73,10 @@ public class SceneExaminationModel : SceneModel
 
         posCallbacks.Add(goName + "1", () =>
         {
-            transform.localEulerAngles = Vector3.zero;
+            transform.localEulerAngles = new Vector3(0, -44.4f, 0);
             Animator animator = child.GetComponent<Animator>();
-            animator.Play("Di");
+            animator.Play("diqian_1");
+            money.gameObject.SetActive(true);
         });
     }
 }

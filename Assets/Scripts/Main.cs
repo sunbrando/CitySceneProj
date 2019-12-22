@@ -81,9 +81,13 @@ public class Main : MonoBehaviour
 
     void SwitchState()
     {
-        if (CtrlModel.sceneState == SceneState.SceneMotoRun)
+        if (CtrlModel.sceneState == SceneState.SceneExamination)
         {
             CtrlModel.sceneState = SceneState.SceneProjTalk;
+        }
+        else if(CtrlModel.sceneState == SceneState.SceneMotoRun)
+        {
+            CtrlModel.sceneState = SceneState.SceneExamination;
         }
         else
         {
