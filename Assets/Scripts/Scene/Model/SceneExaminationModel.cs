@@ -17,6 +17,7 @@ public class SceneExaminationModel : SceneModel
 
         SetCharacter_Male_JacketCallBack();
         SetCharacter_Female_JacketCallBack();
+        Car_6Call();
 
         SetMoveAndAnimCallBack();
     }
@@ -34,7 +35,6 @@ public class SceneExaminationModel : SceneModel
         faceAngerTs.gameObject.SetActive(false);
 
         faceAngerTs.localPosition = new Vector3(faceHanTs.localPosition.x, faceHanTs.localPosition.y-2, faceHanTs.localPosition.z);
-
         posCallbacks.Add(goName + "0", () =>
         {
             child.gameObject.SetActive(true);
@@ -47,21 +47,29 @@ public class SceneExaminationModel : SceneModel
         });
     }
 
-    void ShowFaceAnger()
+    void Car_6Call()
     {
-        string goName = "Character_Male_JacketNav";
+        string goName = "Car_6Nav";
         Transform transform = gos[goName].transform;
-        Transform faceAngerTs = transform.Find("faceAnger");
+        Transform door = transform.Find("carKao/kao_car/door_R");
 
-        faceAngerTs.gameObject.SetActive(true);
+        KaoCarScript kaoCarScript = door.GetComponent<KaoCarScript>();
+        kaoCarScript.ResetPos();
+
+        posCallbacks.Add(goName + "0", () =>
+        {
+            kaoCarScript.PlayOpenDoor();
+        });
     }
 
     void SetCharacter_Female_JacketCallBack()
     {
+        Debug.Log("SetCharacter_Female_JacketCallBack");
         string goName = "Character_Female_JacketNav";
         Transform transform = gos[goName].transform;
         Transform child = transform.Find("Character_Female_Jacket");
-        Transform money = child.Find("Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 Spine1/Bip001 Spine2/Bip001 Neck/Bip001 R Clavicle/Bip001 R UpperArm/Bip001 R Forearm/Bip001 R Hand/Bip001 R Finger2/Bip001 R Finger21/money");
+        //子节点隐藏后就无法查找，只能用这种蛋痛的写法了
+        Transform money = child.Find("Bip001").Find("Bip001 Pelvis").Find("Bip001 Spine").Find("Bip001 Spine1").Find("Bip001 Spine2").Find("Bip001 Neck").Find("Bip001 R Clavicle").Find("Bip001 R UpperArm").Find("Bip001 R Forearm").Find("Bip001 R Hand").Find("Bip001 R Finger2").Find("Bip001 R Finger21").Find("money");
 
         child.gameObject.SetActive(false);
         money.gameObject.SetActive(false);

@@ -70,7 +70,7 @@ public class MoveAndAnim : MonoBehaviour
                     {
                         Animator animator = child.GetComponent<Animator>();
                         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-                        if (stateInfo.IsName("Stand"))
+                        if (stateInfo.IsName("Stand") || stateInfo.IsName("bedown"))
                         {
                             isPlay = false;
                         }
@@ -200,5 +200,12 @@ public class MoveAndAnim : MonoBehaviour
         }
 
         posCallbacks.Add(posIndex, eventCallback0);
+    }
+
+    public void Dispose()
+    {
+        posCallbacks = new Dictionary<int, EventCallback0>();
+        animCallbacks = new Dictionary<string, EventCallback0>();
+        isPlay = false;
     }
 }

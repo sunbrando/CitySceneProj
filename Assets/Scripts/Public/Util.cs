@@ -56,7 +56,6 @@ public class Util
             text = DecodeBase64(text);
             DateTime dt = Convert.ToDateTime(text);
             DateTime pastDt = dt.AddDays(30);
-            Debug.Log(DateTime.Compare(pastDt, DateTime.Now));
             if (DateTime.Compare(pastDt, DateTime.Now) > 0)
                 return true;
             else

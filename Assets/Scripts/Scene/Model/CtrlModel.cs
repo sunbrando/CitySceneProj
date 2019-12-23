@@ -68,6 +68,11 @@ public class CtrlModel
     public static void SwicthState(SceneState sceneState)
     {
         CtrlModel.sceneState = sceneState;
+        if (CtrlModel.sceneModel != null)
+        {
+            CtrlModel.sceneModel.Dispose();
+            CtrlModel.sceneModel = null;
+        }
         CtrlModel.sceneModel = CtrlModel.GetSceneModel(sceneState);
         CtrlModel.moveOrUI = MoveOrUI.None;
         CtrlModel.isSceneEnd = false;

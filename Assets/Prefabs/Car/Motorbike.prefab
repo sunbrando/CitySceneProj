@@ -956,7 +956,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5823460245349148629}
   m_Layer: 0
-  m_Name: "\u7535\u52A8\u8F66"
+  m_Name: Motorbike
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -12,6 +12,11 @@ public class FaceCtrl : MonoBehaviour
         Invoke("ShowFaceAnger", 4.0f);
     }
 
+    void OnDisable()
+    {
+        CancelInvoke("ShowFaceAnger");
+    }
+
     void ShowFaceAnger()
     {
         if (CtrlModel.sceneState == SceneState.SceneExamination)
@@ -19,6 +24,11 @@ public class FaceCtrl : MonoBehaviour
             this.gameObject.SetActive(false);
             faceAngerTs.gameObject.SetActive(true);
             faceAngerTs.DOMoveY(faceAngerTs.localPosition.y + 2, 0.5f);
+        }
+        else
+        {
+            this.gameObject.SetActive(false);
+            faceAngerTs.gameObject.SetActive(false);
         }
     }
 }

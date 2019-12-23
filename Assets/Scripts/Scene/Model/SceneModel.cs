@@ -68,15 +68,6 @@ public class SceneModel
             GameObject gameObj = gos[name];
             MoveAndAnim moveAndAnim = gameObj.GetComponent<MoveAndAnim>();
 
-            //for (int j = 0; j < moveAndAnim.animNames.Length; j++)
-            //{
-            //    string animName = moveAndAnim.animNames[i];
-            //    if (animCallbacks.ContainsKey(name + animName))
-            //    {
-            //        moveAndAnim.animCallbacks.Add(animName, animCallbacks[name + animName]);
-            //    }
-            //}
-
             for (int j = 0; j < moveAndAnim.end.Length; j++)
             {
                 if (posCallbacks.ContainsKey(name + j.ToString()))
@@ -84,6 +75,21 @@ public class SceneModel
                     moveAndAnim.AddPosCallbacks(j, posCallbacks[name + j.ToString()]);
                 }
             }
+        }
+    }
+
+
+    public void Dispose()
+    {
+        posCallbacks = new Dictionary<string, EventCallback0>();
+        animCallbacks = new Dictionary<string, EventCallback0>();
+        
+        for (int i = 0; i < goNames.Length; i++)
+        {
+            string name = goNames[i];
+            GameObject gameObj = gos[name];
+            MoveAndAnim moveAndAnim = gameObj.GetComponent<MoveAndAnim>();
+            moveAndAnim.Dispose();
         }
     }
 }

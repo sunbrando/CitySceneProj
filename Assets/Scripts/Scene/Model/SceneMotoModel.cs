@@ -19,6 +19,8 @@ public class SceneMotoModel : SceneModel
 
         SetCarCallBack();
         SetCharacter_BusinessMan_ShirtCallBack();
+        MotorbikeCallBack();
+        Car_6Call();
 
         SetMoveAndAnimCallBack();
     }
@@ -31,7 +33,7 @@ public class SceneMotoModel : SceneModel
         nav.speed = 50;
         nav.acceleration = 50;
 
-        Transform boomTs = transform.Find("Car_6/碰撞效果");
+        Transform boomTs = transform.Find("碰撞效果");
         boomTs.gameObject.SetActive(false);
 
         posCallbacks.Add(goName + "0", () =>
@@ -44,6 +46,26 @@ public class SceneMotoModel : SceneModel
         posCallbacks.Add(goName + "1", () =>
         {
             boomTs.gameObject.SetActive(false);
+            if (CtrlModel.sceneState == SceneState.SceneMotoRun && !CtrlModel.isGodView)
+            {
+                Camera.main.transform.DOMove(new Vector3(9.987728f, 44f, -45.65843f), 1);
+                Camera.main.transform.DORotate(new Vector3(40.909f, 59.438f, 0), 1);
+            }
+        });
+    }
+
+    void MotorbikeCallBack()
+    {
+        string goName = "MotorbikeNav";
+        Transform transform = gos[goName].transform;
+        Transform child = transform.Find("SK_Character_Male_Hoodie");
+        child.transform.localPosition = new Vector3(0, -5.84f, -0.1499939f);
+
+        posCallbacks.Add(goName + "1", () =>
+        {
+            child.transform.transform.DOMove(new Vector3(80f, 0.5020432f, -31.8105f), 0.5f);
+            Animator animator = child.GetComponent<Animator>();
+            animator.Play("bedown");
         });
     }
 
@@ -53,21 +75,29 @@ public class SceneMotoModel : SceneModel
         Transform transform = gos[goName].transform;
         Transform child = transform.Find("Character_BusinessMan_Shirt");
 
-        child.gameObject.SetActive(false);
         posCallbacks.Add(goName + "1", () =>
         {
             child.gameObject.SetActive(true);
-            if (CtrlModel.sceneState == SceneState.SceneMotoRun && !CtrlModel.isGodView)
-            {
-                Camera.main.transform.DOMove(new Vector3(9.987728f, 44f, -45.65843f), 1);
-                Camera.main.transform.DORotate(new Vector3(40.909f, 59.438f, 0), 1);
-            }
         });
 
         posCallbacks.Add(goName + "2", () =>
         {
             Animator animator = child.GetComponent<Animator>();
             animator.Play("attack");
+        });
+    }
+
+    void Car_6Call()
+    {
+        string goName = "Car_6Nav";
+        Transform transform = gos[goName].transform;
+        Transform door = transform.Find("Car_6/Car_Yellow_1/door_right");
+        BlueCarScript blueCarScript = door.GetComponent<BlueCarScript>();
+        blueCarScript.ResetPos();
+
+        posCallbacks.Add(goName + "2", () =>
+        {
+            blueCarScript.PlayOpenDoor();
         });
     }
 }
