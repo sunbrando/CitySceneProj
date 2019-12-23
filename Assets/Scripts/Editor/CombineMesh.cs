@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using System.IO;
+using System;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -95,6 +97,23 @@ public class CombineMesh : MonoBehaviour
             return Vector3.zero;
         }
 
+    }
+
+
+
+    [MenuItem("Tools/CreateKey")]
+    static void CreateKey()
+    {
+        string path = Util.passwordPath;
+        Debug.Log(path);
+        string password = DateTime.Now.ToString();
+        password = Util.EncodeBase64(password);
+
+        if (File.Exists(path))
+        {
+            File.Delete(path);
+        }
+        File.WriteAllText(path, password);
     }
 #endif
 

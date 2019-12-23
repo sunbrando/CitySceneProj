@@ -8,9 +8,12 @@ public class Main : MonoBehaviour
     public static Vector3 defaultCamPos = new Vector3(-288.6969f, 257.4214f, -396.8492f);
     public static Vector3 defaultCamEulerAngles = new Vector3(30.699f, 46.887f, 0);
 
-
+    bool isPass = false;
     private void Awake()
     {
+        isPass = Util.IsPass();
+        if (!isPass)
+            return;
         Init();
         InitCamera();
         MainView.GetInstance().InitView();
@@ -23,7 +26,8 @@ public class Main : MonoBehaviour
 
     private void Update()
     {
-
+        if (!isPass)
+            return;
         if (CtrlModel.isGodView)
         {
             PlayByGodView();
