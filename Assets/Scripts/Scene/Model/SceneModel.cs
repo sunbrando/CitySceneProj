@@ -47,7 +47,7 @@ public class SceneModel
         return new Vector3(endCamEulerAngles.x - startCamEulerAngles.x, endCamEulerAngles.y - startCamEulerAngles.y, endCamEulerAngles.z - startCamEulerAngles.z);
     }
 
-    public void GetAllGo()
+    public void GetAllNavGos()
     {
         if (goNames != null)
         {
@@ -76,6 +76,12 @@ public class SceneModel
                 }
             }
         }
+    }
+
+    public void SetNavGos(string[] gos)
+    {
+        goNames = gos;
+        GetAllNavGos();
     }
 
 

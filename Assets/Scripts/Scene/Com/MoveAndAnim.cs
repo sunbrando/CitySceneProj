@@ -13,7 +13,6 @@ public class MoveAndAnim : MonoBehaviour
     public string[] delaysAnimNames;
 
     public Dictionary<int, EventCallback0> posCallbacks = new Dictionary<int, EventCallback0>();
-    public Dictionary<string, EventCallback0> animCallbacks = new Dictionary<string, EventCallback0>();
 
     Vector3 startLocalEulerAngles;
     int index;
@@ -119,15 +118,6 @@ public class MoveAndAnim : MonoBehaviour
 
         if (child.GetComponent<Animator>() != null)
         {
-            if (animCallbacks != null)
-            {
-                if (animCallbacks.ContainsKey(animNames[animIndex]))
-                {
-                    animCallbacks[animNames[animIndex]]();
-                    animCallbacks.Remove(animNames[animIndex]);
-                }
-            }
-
             Animator animator = child.GetComponent<Animator>();
             animator.Play(animName);
         }
@@ -205,7 +195,6 @@ public class MoveAndAnim : MonoBehaviour
     public void Dispose()
     {
         posCallbacks = new Dictionary<int, EventCallback0>();
-        animCallbacks = new Dictionary<string, EventCallback0>();
         isPlay = false;
     }
 }

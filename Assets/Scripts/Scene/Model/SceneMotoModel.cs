@@ -9,13 +9,12 @@ public class SceneMotoModel : SceneModel
     public SceneMotoModel() : base()
     {
         parentName = "City/SceneMotoRun/";
-        goNames = new string[] { "MotorbikeNav", "Car_6Nav", "Bus_6Nav", "Character_BusinessMan_ShirtNav", "Character_Female_JacketNav", "Character_Male_PoliceNav" };
+        SetNavGos(new string[] { "MotorbikeNav", "Car_6Nav", "Bus_6Nav", "Character_BusinessMan_ShirtNav", "Character_Female_JacketNav", "Character_Male_PoliceNav" });
         endCamPos = new Vector3(-77.5314f, 53.95737f, -251.1162f);
         endCamEulerAngles = new Vector3(28.808f, 35.398f, 0);
 
         sceneView = SceneMotoRunView.GetInstance();
 
-        GetAllGo();
 
         SetCarCallBack();
         SetCharacter_BusinessMan_ShirtCallBack();
@@ -43,13 +42,13 @@ public class SceneMotoModel : SceneModel
             nav.speed = 180;
             nav.acceleration = 150;
         });
+
         posCallbacks.Add(goName + "1", () =>
         {
-            boomTs.gameObject.SetActive(false);
             if (CtrlModel.sceneState == SceneState.SceneMotoRun && !CtrlModel.isGodView)
             {
-                Camera.main.transform.DOMove(new Vector3(9.987728f, 44f, -45.65843f), 1);
-                Camera.main.transform.DORotate(new Vector3(40.909f, 59.438f, 0), 1);
+                Camera.main.transform.DOMove(new Vector3(79.8165f, 34.04635f, -56.23764f), 1);
+                Camera.main.transform.DORotate(new Vector3(30.424f, -56.861f, 0), 1);
             }
         });
     }
@@ -60,12 +59,12 @@ public class SceneMotoModel : SceneModel
         Transform transform = gos[goName].transform;
         Transform child = transform.Find("SK_Character_Male_Hoodie");
         child.transform.localPosition = new Vector3(0, -5.84f, -0.1499939f);
+        NavMeshAgent nav = transform.GetComponent<NavMeshAgent>();
+        nav.speed = 80;
 
-        posCallbacks.Add(goName + "1", () =>
+        posCallbacks.Add(goName + "0", () =>
         {
-            child.transform.transform.DOMove(new Vector3(80f, 0.5020432f, -31.8105f), 0.5f);
-            Animator animator = child.GetComponent<Animator>();
-            animator.Play("bedown");
+            nav.speed = 50;
         });
     }
 
@@ -74,6 +73,7 @@ public class SceneMotoModel : SceneModel
         string goName = "Character_BusinessMan_ShirtNav";
         Transform transform = gos[goName].transform;
         Transform child = transform.Find("Character_BusinessMan_Shirt");
+        child.gameObject.SetActive(false);
 
         posCallbacks.Add(goName + "1", () =>
         {

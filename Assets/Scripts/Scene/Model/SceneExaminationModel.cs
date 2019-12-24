@@ -7,13 +7,11 @@ public class SceneExaminationModel : SceneModel
     public SceneExaminationModel() : base()
     {
         parentName = "City/SceneExamination/";
-        goNames = new string[] { "Character_Male_JacketNav", "Car_6Nav" , "Character_Female_JacketNav" };
+        SetNavGos(new string[] {  "Character_Male_JacketNav", "Car_6Nav" , "Character_Female_JacketNav" });
         endCamPos = new Vector3(-86.03757f, 33.16249f, -3.187508f);
         endCamEulerAngles = new Vector3(26.642f, 52.908f, 0);
 
         //sceneView = SceneProjTalkView.GetInstance();
-
-        GetAllGo();
 
         SetCharacter_Male_JacketCallBack();
         SetCharacter_Female_JacketCallBack();
