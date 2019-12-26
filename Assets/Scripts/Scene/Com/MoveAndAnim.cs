@@ -43,16 +43,21 @@ public class MoveAndAnim : MonoBehaviour
     {
         isPlay = true;
 
+        ResetState();
+        nav.enabled = true;
+        PlayNavAnimator();
+        SetDelay();
+    }
+
+    public void ResetState()
+    {
         nav.enabled = false;
         this.transform.position = startPos;
         this.transform.localEulerAngles = startLocalEulerAngles;
         index = 0;
-        nav.enabled = true;
         animIndex = 0;
         delay = 0;
         delaysIndex = -1;
-        PlayNavAnimator();
-        SetDelay();
     }
 
     void SetIsEnd(bool isToEnd)
@@ -195,6 +200,8 @@ public class MoveAndAnim : MonoBehaviour
     public void Dispose()
     {
         posCallbacks = new Dictionary<int, EventCallback0>();
-        isPlay = false;
+        //PlayAnimator("Stand");
+        //ResetState();
+        //isPlay = false;
     }
 }

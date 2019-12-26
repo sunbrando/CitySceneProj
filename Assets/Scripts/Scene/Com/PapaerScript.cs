@@ -22,7 +22,7 @@ public class PapaerScript : MonoBehaviour
 
     void Update()
     {
-        if (CtrlModel.moveOrUI == MoveOrUI.None)
+        if (CtrlModel.sceneState != SceneState.SceneProjTalk)
         {
             this.transform.parent = StartNode.transform;
             this.transform.localPosition = startPos;

@@ -25,14 +25,14 @@ public class MainView {
         //GButton button1 = panel1.com.GetChild("button_1").asButton;
         //GButton button2 = panel1.com.GetChild("button_2").asButton;
         //GButton button3 = panel1.com.GetChild("button_3").asButton;
-        GButton button4 = panel1.com.GetChild("button_4").asButton;
-        GButton button5 = panel1.com.GetChild("button_5").asButton;
+        GButton button4 = panel1.com.GetChild("button_sceneBack").asButton;
+        //GButton button5 = panel1.com.GetChild("button_5").asButton;
 
         //button1.onClick.Set(button1_Click);
         //button2.onClick.Set(button2_Click);
         //button3.onClick.Set(button3_Click);
         button4.onClick.Set(button4_Click);
-        button5.onClick.Set(button5_Click);
+        //button5.onClick.Set(button5_Click);
     }
 
     //void button1_Click()

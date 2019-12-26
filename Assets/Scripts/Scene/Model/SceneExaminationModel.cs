@@ -11,7 +11,7 @@ public class SceneExaminationModel : SceneModel
         endCamPos = new Vector3(-86.03757f, 33.16249f, -3.187508f);
         endCamEulerAngles = new Vector3(26.642f, 52.908f, 0);
 
-        //sceneView = SceneProjTalkView.GetInstance();
+        sceneView = SceneExaminationView.GetInstance();
 
         SetCharacter_Male_JacketCallBack();
         SetCharacter_Female_JacketCallBack();
