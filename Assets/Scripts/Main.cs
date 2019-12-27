@@ -1,33 +1,56 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using FairyGUI;
 
 public class Main : MonoBehaviour
 {
-    public static Vector3 defaultCamPos = new Vector3(-288.6969f, 257.4214f, -396.8492f);
-    public static Vector3 defaultCamEulerAngles = new Vector3(30.699f, 46.887f, 0);
+
 
     bool isPass = false;
-    private void Awake()
+
+    void Awake()
     {
-        isPass = Util.IsPass();
-        if (!isPass)
-            return;
-        Init();
-        InitCamera();
-        MainView.GetInstance().InitView();
+        CtrlModel.sceneOrUI = SceneOrUI.Main;
+        GRoot.inst.SetContentScaleFactor(Screen.width, Screen.height);
     }
 
-    void Start()
+    IEnumerator Start()
     {
+        #if UNITY_EDITOR
+            CtrlModel.isPass = true;
+            yield return null;
+        #else
+            yield return StartCoroutine(CheckIsPass.GetRequest());
+        #endif
 
+        StartCoroutine(IsPass());
     }
 
     private void Update()
     {
-        if (!isPass)
+        if (!CtrlModel.isPass)
             return;
+
+        if (CtrlModel.sceneOrUI == SceneOrUI.Scene)
+        {
+            UpdateScene();
+        }
+    }
+
+    public IEnumerator IsPass()
+    {
+        if (!CtrlModel.isPass)
+        {
+            yield return null;
+        }
+
+        MainCtrl.SwitchMainState();
+        yield return null;
+    }
+
+    void UpdateScene()
+    {
         if (CtrlModel.isGodView)
         {
             PlayByGodView();
@@ -38,26 +61,13 @@ public class Main : MonoBehaviour
         }
     }
 
-    public static void Init()
-    {
-        CtrlModel.isGodView = true;
-        CtrlModel.sceneState = SceneState.None;
-        CtrlModel.moveOrUI = MoveOrUI.None;
-    }
-
-    void InitCamera()
-    {
-        Camera.main.transform.localPosition = defaultCamPos;
-        Camera.main.transform.localEulerAngles = defaultCamEulerAngles;
-    }
-
     void PlayByGodView()
     {
         CtrlBase ctrl = CtrlModel.GetSceneCtrl();
 
         if (ctrl == null || ctrl.IsStop())
         {
-            SwitchState();
+            SwitchSceneState();
             CtrlModel.SwicthState(CtrlModel.sceneState);
             CtrlModel.sceneModel.isPlayCam = false;
             CtrlModel.sceneModel.sceneView = null;
@@ -80,10 +90,10 @@ public class Main : MonoBehaviour
         {
             CtrlModel.SwicthState(CtrlModel.sceneState);
         }
-
     }
 
-    void SwitchState()
+
+    void SwitchSceneState()
     {
         if (CtrlModel.sceneState == SceneState.SceneExamination)
         {

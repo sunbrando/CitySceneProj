@@ -36,4 +36,11 @@ public abstract class SceneView
         panel.Dispose();
         eventCallback0?.Invoke();
     }
+
+    public void SwitchMainState(SceneOrUI sceneOrUI)
+    {
+        CtrlModel.sceneOrUI = sceneOrUI;
+        MainCtrl.SwitchMainState();
+        Dispose();
+    }
 }

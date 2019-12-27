@@ -2,6 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum SceneOrUI
+{
+    Main,
+    ZhaoCha,
+    WenJuan,
+    Scene,
+}
+
 public enum SceneState
 {
     None,
@@ -21,6 +29,9 @@ public enum MoveOrUI
 
 public class CtrlModel
 {
+    public static SceneOrUI sceneOrUI;
+    public static bool isPass = false;
+
     public static SceneState sceneState;
     public static MoveOrUI moveOrUI;
     public static SceneModel sceneModel;

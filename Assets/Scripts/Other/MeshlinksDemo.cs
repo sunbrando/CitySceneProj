@@ -8,8 +8,6 @@ public class MeshlinksDemo : MonoBehaviour
                        // Use this for initialization
     void Start()
     {
-        Debug.Log("Start");
-
         //获取到自身的NavMeshAgent组件
         mr = GetComponent<NavMeshAgent>();
     }
