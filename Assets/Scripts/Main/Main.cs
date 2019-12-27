@@ -5,26 +5,15 @@ using FairyGUI;
 
 public class Main : MonoBehaviour
 {
-
-
-    bool isPass = false;
-
     void Awake()
     {
         CtrlModel.sceneOrUI = SceneOrUI.Main;
         GRoot.inst.SetContentScaleFactor(Screen.width, Screen.height);
     }
 
-    IEnumerator Start()
+    void Start()
     {
-        #if UNITY_EDITOR
-            CtrlModel.isPass = true;
-            yield return null;
-        #else
-            yield return StartCoroutine(CheckIsPass.GetRequest());
-        #endif
-
-        StartCoroutine(IsPass());
+        IsPass();
     }
 
     private void Update()
@@ -38,15 +27,14 @@ public class Main : MonoBehaviour
         }
     }
 
-    public IEnumerator IsPass()
+    public void IsPass()
     {
         if (!CtrlModel.isPass)
         {
-            yield return null;
+            return;
         }
 
         MainCtrl.SwitchMainState();
-        yield return null;
     }
 
     void UpdateScene()
