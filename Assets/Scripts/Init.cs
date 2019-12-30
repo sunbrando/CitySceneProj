@@ -23,7 +23,6 @@ public class Init : MonoBehaviour
             yield return null;
         }
 
-        UnityEngine.SceneManagement.SceneManager.LoadScene("City");
         yield return null;
     }
 }

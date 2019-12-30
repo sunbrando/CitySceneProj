@@ -29,14 +29,24 @@ public enum MoveOrUI
 
 public class CtrlModel
 {
-    public static SceneOrUI sceneOrUI;
     public static bool isPass = false;
 
+    public static SceneOrUI sceneOrUI;
     public static SceneState sceneState;
     public static MoveOrUI moveOrUI;
     public static SceneModel sceneModel;
-    public static bool isSceneEnd = true;
-    public static bool isGodView = true;
+    public static bool isSceneEnd;
+    public static bool isGodView;
+
+    public static void InitModel()
+    {
+        sceneOrUI = SceneOrUI.Scene;
+        sceneState = SceneState.None;
+        moveOrUI = MoveOrUI.None;
+        sceneModel = null;
+        isSceneEnd = true;
+        isGodView = true;
+    }
 
     public static CtrlBase GetSceneCtrl()
     {

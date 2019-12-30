@@ -10,6 +10,8 @@
 /[Ll]ogs/
 /[Mm]emoryCaptures/
 /[Aa]ssets/Models*
+/[Aa]ssets/ZFBrowser*
+/[Bb]rowserAssets/
 
 # Never ignore Asset meta data
 !/[Aa]ssets/**/*.meta

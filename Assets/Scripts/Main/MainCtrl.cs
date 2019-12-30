@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainCtrl
 {
@@ -15,10 +16,10 @@ public class MainCtrl
                 ShowMain();
                 return;
             case SceneOrUI.ZhaoCha:
-                ShowMain();
+                // ShowMain();
                 return;
             case SceneOrUI.WenJuan:
-                ShowMain();
+                // ShowMain();
                 return;
             case SceneOrUI.Scene:
                 ShowScene();
@@ -31,7 +32,9 @@ public class MainCtrl
 
     public static void ShowMain()
     {
-        MainPanel.GetInstance().InitView();
+        // MainPanel.GetInstance().InitView();
+        SceneManager.UnloadSceneAsync("City");
+        SceneManager.LoadScene("Init");
     }
 
     public static void ShowScene()

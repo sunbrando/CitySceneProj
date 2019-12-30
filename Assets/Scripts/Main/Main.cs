@@ -7,8 +7,13 @@ public class Main : MonoBehaviour
 {
     void Awake()
     {
-        CtrlModel.sceneOrUI = SceneOrUI.Main;
+        CtrlModel.InitModel();
         GRoot.inst.SetContentScaleFactor(Screen.width, Screen.height);
+    }
+
+    void OnDestroy()
+    {
+        CtrlModel.InitModel();
     }
 
     void Start()
