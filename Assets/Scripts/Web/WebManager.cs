@@ -41,11 +41,25 @@ public class WebManager : MonoBehaviour
  	void CursorChange()
 	 {
 		HUDBrowser.RegisterFunction("cityscene", args => LoadCityScene());
+
+		HUDBrowser.RegisterFunction("print_zhaocha", args => PrintZhaoCha());
+
+		HUDBrowser.RegisterFunction("print_wenjuan", args => PrintWenJuan());
 	 }
 
     public void LoadCityScene()
     {
 		CtrlModel.sceneOrUI = SceneOrUI.Scene;
         SceneManager.LoadScene("City");
+    }
+
+	void PrintZhaoCha()
+    {
+		Debug.Log("print_zhaocha");
+    }
+
+	void PrintWenJuan()
+	{
+		Debug.Log("print_wenjuan");
     }
 }
