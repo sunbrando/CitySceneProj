@@ -19,7 +19,9 @@ public class SceneExaminationView : SceneView
     public override void InitView(EventCallback0 eventCallback0)
     {
         this.eventCallback0 = eventCallback0;
-        panel = new GamePanel("Main", "SceneDesc");
+        if (panel == null)
+            panel = new GamePanel("Main", "SceneDesc");
+        panel.com.GetController("位置").selectedPage = "左";
         GComponent uIBackground = panel.com.GetChild("com_desc").asCom;
         GButton button_Close = uIBackground.GetChild("Button_Close").asButton;
 

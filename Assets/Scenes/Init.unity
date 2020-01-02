@@ -319,7 +319,7 @@ PrefabInstance:
     - target: {fileID: 2915511813805956725, guid: e782603cf4172134dab5bd8c770f0de0,
         type: 3}
       propertyPath: _url
-      value: localGame://main/index.html
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e782603cf4172134dab5bd8c770f0de0, type: 3}

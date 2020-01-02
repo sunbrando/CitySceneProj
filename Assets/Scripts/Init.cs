@@ -6,6 +6,10 @@ public class Init : MonoBehaviour
 {
     void Start()
     {
-        CtrlModel.isPass = Util.IsPass();
+        #if UNITY_EDITOR
+            CtrlModel.isPass = true;
+        #else
+            CtrlModel.isPass = Util.IsPass();
+        #endif
     }
 }

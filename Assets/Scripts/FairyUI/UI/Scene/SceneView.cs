@@ -34,6 +34,7 @@ public abstract class SceneView
             Timers.inst.Remove(PrintText);
         }
         panel.Dispose();
+        panel = null;
         eventCallback0?.Invoke();
     }
 
