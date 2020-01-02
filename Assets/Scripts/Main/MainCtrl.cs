@@ -13,13 +13,13 @@ public class MainCtrl
         switch (CtrlModel.sceneOrUI)   
         {
             case SceneOrUI.Main:
-                ShowMain();
+                ShowMainWeb();
                 return;
             case SceneOrUI.ZhaoCha:
-                // ShowMain();
+                ShowMainWeb();
                 return;
             case SceneOrUI.WenJuan:
-                // ShowMain();
+                ShowMainWeb();
                 return;
             case SceneOrUI.Scene:
                 ShowScene();
@@ -30,9 +30,8 @@ public class MainCtrl
     }
 
 
-    public static void ShowMain()
+    public static void ShowMainWeb()
     {
-        // MainPanel.GetInstance().InitView();
         SceneManager.UnloadSceneAsync("City");
         SceneManager.LoadScene("Init");
     }

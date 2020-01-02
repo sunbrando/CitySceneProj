@@ -20,12 +20,32 @@ public class WebManager : MonoBehaviour
 
 	public void Start() {
 		HUDBrowser = hud.GetComponent<Browser>();
-		HUDBrowser.RegisterFunction("cityscene", args => LoadCityScene());
+
+		BrowserCursor cursor = HUDBrowser.UIHandler.BrowserCursor;
+		cursor.cursorChange += CursorChange;
+
+		if (CtrlModel.sceneOrUI == SceneOrUI.Main)
+		{
+			HUDBrowser.Url = "localGame://index.html";
+		}
+		else if (CtrlModel.sceneOrUI == SceneOrUI.ZhaoCha)
+		{
+			HUDBrowser.Url = "localGame://zhaocha.html";
+		}
+		else if (CtrlModel.sceneOrUI == SceneOrUI.WenJuan)
+		{
+			HUDBrowser.Url = "localGame://wenjuan.html";
+		}
     }
 
+ 	void CursorChange()
+	 {
+		HUDBrowser.RegisterFunction("cityscene", args => LoadCityScene());
+	 }
 
     public void LoadCityScene()
     {
+		CtrlModel.sceneOrUI = SceneOrUI.Scene;
         SceneManager.LoadScene("City");
     }
 }

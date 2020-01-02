@@ -22,8 +22,12 @@ public class MainScene : SceneView {
         panel = new GamePanel("Main", "MainScene");
         GButton button_sceneBack = panel.com.GetChild("button_sceneBack").asButton;
         GButton button_main = panel.com.GetChild("button_main").asButton;
+        GButton button_wenjuan = panel.com.GetChild("button_wenjuan").asButton;
+        GButton button_zhaocha = panel.com.GetChild("button_zhaocha").asButton;
 
         button_sceneBack.onClick.Set(Button_sceneBack_Click);
+        button_wenjuan.onClick.Set(Button_wenjuan_Click);
+        button_zhaocha.onClick.Set(Button_zhaocha_Click);
         button_main.onClick.Set(Button_main_Click);
     }
 
@@ -42,5 +46,15 @@ public class MainScene : SceneView {
     void Button_main_Click()
     {
         SwitchMainState(SceneOrUI.Main);
+    }
+    
+    void Button_zhaocha_Click()
+    {
+        SwitchMainState(SceneOrUI.ZhaoCha);
+    }
+    
+    void Button_wenjuan_Click()
+    {
+        SwitchMainState(SceneOrUI.WenJuan);
     }
 }

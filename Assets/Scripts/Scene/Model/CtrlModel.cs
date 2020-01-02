@@ -30,8 +30,7 @@ public enum MoveOrUI
 public class CtrlModel
 {
     public static bool isPass = false;
-
-    public static SceneOrUI sceneOrUI;
+    public static SceneOrUI sceneOrUI = SceneOrUI.Main;
     public static SceneState sceneState;
     public static MoveOrUI moveOrUI;
     public static SceneModel sceneModel;
@@ -40,7 +39,6 @@ public class CtrlModel
 
     public static void InitModel()
     {
-        sceneOrUI = SceneOrUI.Scene;
         sceneState = SceneState.None;
         moveOrUI = MoveOrUI.None;
         sceneModel = null;
