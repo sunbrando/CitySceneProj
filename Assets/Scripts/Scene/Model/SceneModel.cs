@@ -87,8 +87,8 @@ public class SceneModel
 
     public void Dispose()
     {
-        posCallbacks = new Dictionary<string, EventCallback0>();
-        animCallbacks = new Dictionary<string, EventCallback0>();
+        posCallbacks.Clear();
+        animCallbacks.Clear();
         
         for (int i = 0; i < goNames.Length; i++)
         {
@@ -97,5 +97,7 @@ public class SceneModel
             MoveAndAnim moveAndAnim = gameObj.GetComponent<MoveAndAnim>();
             moveAndAnim.Dispose();
         }
+
+        gos.Clear();
     }
 }

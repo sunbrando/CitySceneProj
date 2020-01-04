@@ -199,7 +199,7 @@ public class MoveAndAnim : MonoBehaviour
 
     public void Dispose()
     {
-        posCallbacks = new Dictionary<int, EventCallback0>();
+        posCallbacks.Clear();
         //PlayAnimator("Stand");
         //ResetState();
         //isPlay = false;
