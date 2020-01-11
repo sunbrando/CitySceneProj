@@ -21,8 +21,8 @@ public abstract class CtrlBase
                 CtrlModel.moveOrUI = MoveOrUI.UI;
                 CtrlModel.sceneModel.sceneView.InitView(() =>
                 {
+                    SceneEnd();
                 });
-                SceneEnd();
             }
             else
             {
