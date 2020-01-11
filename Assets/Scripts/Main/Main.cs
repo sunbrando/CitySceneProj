@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using FairyGUI;
+using System.IO;
 
 public class Main : MonoBehaviour
 {
     void Awake()
     {
+        // UnityEngine.ScreenCapture.CaptureScreenshot(UnityEngine.Application.streamingAssetsPath + "/" + "Screenshot.png");  
         CtrlModel.InitModel();
         GRoot.inst.SetContentScaleFactor(Screen.width, Screen.height);
     }

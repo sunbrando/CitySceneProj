@@ -12,13 +12,13 @@ public class OnSceneClick : MonoBehaviour
 
     void Start()
     {
-        tweenMove = transform.DOMoveY(transform.localPosition.y + 10, 0.5f);
-        tweenMove.Pause();
-        tweenMove.SetLoops(-1, LoopType.Yoyo);
+        // tweenMove = transform.DOMoveY(transform.localPosition.y + 10, 0.5f);
+        // tweenMove.Pause();
+        // tweenMove.SetLoops(-1, LoopType.Yoyo);
 
-        tweenRotate = transform.DORotate(new Vector3(0, 180, 0), 0.5f);
-        tweenRotate.Pause();
-        tweenRotate.SetLoops(-1, LoopType.Yoyo);
+        // tweenRotate = transform.DORotate(new Vector3(0, 180, 0), 0.5f);
+        // tweenRotate.Pause();
+        // tweenRotate.SetLoops(-1, LoopType.Yoyo);
     }
 
     void Update()
@@ -28,22 +28,22 @@ public class OnSceneClick : MonoBehaviour
             CheckSceneOnClick();
         }
 
-        if (CtrlModel.sceneState == sceneState)
-        {
-            if (!tweenMove.IsPlaying())
-            {
-                tweenMove.Play();
-                tweenRotate.Play();
-            }
-        }
-        else
-        {
-            if (tweenMove.IsPlaying())
-            {
-                tweenMove.Pause();
-                tweenRotate.Pause();
-            }
-        }
+        // if (CtrlModel.sceneState == sceneState)
+        // {
+        //     if (!tweenMove.IsPlaying())
+        //     {
+        //         tweenMove.Play();
+        //         tweenRotate.Play();
+        //     }
+        // }
+        // else
+        // {
+        //     if (tweenMove.IsPlaying())
+        //     {
+        //         tweenMove.Pause();
+        //         tweenRotate.Pause();
+        //     }
+        // }
     }
 
     public void OnClick()
@@ -54,12 +54,15 @@ public class OnSceneClick : MonoBehaviour
 
     void CheckSceneOnClick()
     {
-        RaycastHit hit;
-        Vector2 screenPosition = Input.mousePosition;
-        var ray = Camera.main.ScreenPointToRay(screenPosition);
-        if (Physics.Raycast(ray, out hit) && hit.transform == transform)
+        if (CtrlModel.sceneState != sceneState || CtrlModel.isGodView)
         {
-            OnClick();
+            RaycastHit hit;
+            Vector2 screenPosition = Input.mousePosition;
+            var ray = Camera.main.ScreenPointToRay(screenPosition);
+            if (Physics.Raycast(ray, out hit) && hit.transform == transform)
+            {
+                OnClick();
+            }
         }
     }
 }

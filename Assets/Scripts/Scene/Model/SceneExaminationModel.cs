@@ -62,7 +62,6 @@ public class SceneExaminationModel : SceneModel
 
     void SetCharacter_Female_JacketCallBack()
     {
-        Debug.Log("SetCharacter_Female_JacketCallBack");
         string goName = "Character_Female_JacketNav";
         Transform transform = gos[goName].transform;
         Transform child = transform.Find("Character_Female_Jacket");

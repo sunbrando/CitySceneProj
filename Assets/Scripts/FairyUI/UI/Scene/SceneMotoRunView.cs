@@ -19,8 +19,11 @@ public class SceneMotoRunView: SceneView
     public override void InitView(EventCallback0 eventCallback0)
     {
         this.eventCallback0 = eventCallback0;
-        if (panel == null)
-            panel = new GamePanel("Main", "SceneDesc");
+        if (panel != null)
+        {
+            return;
+        }
+        panel = new GamePanel("Main", "SceneDesc");
         GComponent uIBackground = panel.com.GetChild("com_desc").asCom;
         GButton button_Close = uIBackground.GetChild("Button_Close").asButton;
 
