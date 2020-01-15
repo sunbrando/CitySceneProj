@@ -36,6 +36,10 @@ public class SceneMotoRunView: SceneView
         button_Close.onClick.Set(() => {
             Dispose();
         });
+        
+        panel.com.onClick.Set(() => {
+            Dispose();
+        });
     }
 
 }
